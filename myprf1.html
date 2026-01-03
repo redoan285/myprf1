@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Redoan | Developer Portfolio</title>
+
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --primary: #f39c12;
+            --dark: #222;
+            --light: #f4f4f4;
+            --text: #333;
+            --white: #fff;
+        }
+
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--white);
+        }
+
+        /* ===== Navigation ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background-color: var(--dark);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 16px;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== Hero ===== */
+        #hero {
+            padding: 120px 50px;
+            background: linear-gradient(135deg, #fdfbfb, #ebedee);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Sections ===== */
+        section {
+            padding: 90px 50px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            font-size: 34px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h2::after {
+            content: "";
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            display: block;
+            margin: 12px auto 0;
+            border-radius: 5px;
+        }
+
+        /* ===== About ===== */
+        #about p {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* ===== Projects ===== */
+        .projects-container {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .project-card {
+            background: var(--light);
+            padding: 25px;
+            width: 300px;
+            border-radius: 12px;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* ===== Skills ===== */
+        .skills-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .skills-container span {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .skills-container span:hover {
+            background: #e67e22;
+        }
+
+        /* ===== Contact ===== */
+        form {
+            max-width: 520px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 12px;
+            border-radius: 30px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #e67e22;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Redoan</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section id="hero">
+        <div class="hero-container">
+            <img src="uu.png" alt="MD Redoan" class="hero-photo">
+            <div class="hero-text">
+                <h1>Hi, I'm MD Redoan</h1>
+                <p>I'm a passionate Web Developer building modern and responsive websites.</p>
+                <a href="#contact" class="btn">Hire Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I'm a full-stack developer with experience in HTML, CSS, JavaScript
+            and modern web technologies. I love turning ideas into real products.
+        </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>Personal portfolio using HTML & CSS.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>E-commerce</h3>
+                <p>Online shop with modern UI.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Blog Platform</h3>
+                <p>Dynamic blog system.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>React</span>
+            <span>Node.js</span>
+            <span>MongoDB</span>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 MD Redoan. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
